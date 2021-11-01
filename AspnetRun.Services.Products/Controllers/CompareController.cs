@@ -10,14 +10,14 @@ using System.Threading.Tasks;
 namespace AspnetRun.Services.Products.Controllers
 {
     [ApiController]
-    [Route("api/comparepage")]
-    public class ComparePageController : Controller
+    [Route("api/compare")]
+    public class CompareController : Controller
     {
         private ICompareService _compareService;
         private IMapper _mapper;
-        private ILogger<ComparePageController> _logger;
+        private ILogger<CompareController> _logger;
 
-        public ComparePageController(ICompareService compareService, IMapper mapper, ILogger<ComparePageController> logger)
+        public CompareController(ICompareService compareService, IMapper mapper, ILogger<CompareController> logger)
         {
             _compareService = compareService ?? throw new ArgumentNullException(nameof(compareService));            
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));

@@ -1,24 +1,31 @@
-using AspnetRun.Services.Products.Core.Configuration;
-using AspnetRun.Services.Products.Infrastructure.Data;
+using AspnetRun.Services.Orders.Core.Configuration;
+using AspnetRun.Services.Orders.Core.Interfaces;
+using AspnetRun.Services.Orders.Core.Repositories;
+using AspnetRun.Services.Orders.Core.Repositories.Base;
+using AspnetRun.Services.Orders.Infrastructure.Data;
+using AspnetRun.Services.Orders.Infrastructure.Logging;
+using AspnetRun.Services.Orders.Infrastructure.Repository;
+using AspnetRun.Services.Orders.Interfaces;
+using AspnetRun.Services.Orders.Repository.Base;
+using AspnetRun.Services.Orders.Services;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using AspnetRun.Services.Products.Core.Interfaces;
-using AspnetRun.Services.Products.Infrastructure.Logging;
-using AspnetRun.Services.Products.Core.Repositories.Base;
-using AspnetRun.Services.Products.Infrastructure.Repository.Base;
-using AspnetRun.Services.Products.Core.Repositories;
-using AspnetRun.Services.Products.Infrastructure.Repository;
-using AspnetRun.Services.Products.Application.Services;
-using AspnetRun.Services.Products.Application.Interfaces;
-using AutoMapper;
+using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace AspnetRun.Services.Products
+namespace AspnetRun.Services.Orders
 {
     public class Startup
     {
@@ -32,7 +39,6 @@ namespace AspnetRun.Services.Products
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // aspnetrun dependencies
             ConfigureAspnetRunServices(services);
 
             services.Configure<CookiePolicyOptions>(options =>
@@ -43,14 +49,11 @@ namespace AspnetRun.Services.Products
             });
 
             services.AddControllers();
-
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "AspnetRun.Services.Products", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "AspnetRun.Services.Orders", Version = "v1" });
             });
         }
-
-
 
         private void ConfigureAspnetRunServices(IServiceCollection services)
         {
@@ -58,20 +61,14 @@ namespace AspnetRun.Services.Products
             services.Configure<AspnetRunSettings>(Configuration);
 
             // Add Infrastructure Layer
-            ConfigureDatabases(services);            
+            ConfigureDatabases(services);
 
             services.AddScoped(typeof(IAppLogger<>), typeof(LoggerAdapter<>));
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-            services.AddScoped<IProductRepository, ProductRepository>();
-            services.AddScoped<ICategoryRepository, CategoryRepository>();            
-            services.AddScoped<IWishlistRepository, WishlistRepository>();
-            services.AddScoped<ICompareRepository, CompareRepository>();            
+            services.AddScoped<IOrderRepository, OrderRepository>();
 
             // Add Application Layer
-            services.AddScoped<IProductService, ProductService>();
-            services.AddScoped<ICategoryService, CategoryService>();            
-            services.AddScoped<IWishlistService, WishListService>();
-            services.AddScoped<ICompareService, CompareService>();            
+            services.AddScoped<IOrderService, OrderService>();
 
             // Add Web Layer
             services.AddAutoMapper(typeof(Startup)); // Add AutoMapper
@@ -94,15 +91,9 @@ namespace AspnetRun.Services.Products
             {
                 app.UseDeveloperExceptionPage();                
             }
-            else
-            {
-                app.UseExceptionHandler("/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
-            }
 
             app.UseSwagger();
-            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "AspnetRun.Services.Products v1"));
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "AspnetRun.Services.Orders v1"));
 
             app.UseHttpsRedirection();
 

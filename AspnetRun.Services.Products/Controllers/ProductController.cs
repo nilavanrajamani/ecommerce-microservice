@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 namespace AspnetRun.Services.Products.Controllers
 {
     [ApiController]
-    [Route("api/productpage")]
-    public class ProductPageController : Controller
+    [Route("api/product")]
+    public class ProductController : Controller
     {
         private IProductService _productAppService;
         private IMapper _mapper;
 
-        public ProductPageController(IProductService productAppService, IMapper mapper)
+        public ProductController(IProductService productAppService, IMapper mapper)
         {
             _productAppService = productAppService ?? throw new ArgumentNullException(nameof(productAppService));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));

@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 namespace AspnetRun.Services.Products.Controllers
 {
     [ApiController]
-    [Route("api/categorypage")]
-    public class CategoryPageController : Controller
+    [Route("api/category")]
+    public class CategoryController : Controller
     {
         private readonly ICategoryService _categoryAppService;
         private readonly IMapper _mapper;
 
-        public CategoryPageController(ICategoryService categoryAppService, IMapper mapper)
+        public CategoryController(ICategoryService categoryAppService, IMapper mapper)
         {
             _categoryAppService = categoryAppService ?? throw new ArgumentNullException(nameof(categoryAppService));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));

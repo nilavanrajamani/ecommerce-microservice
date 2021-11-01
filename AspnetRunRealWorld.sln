@@ -27,6 +27,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "services", "services", "{CA
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspnetRun.Services.Products", "AspnetRun.Services.Products\AspnetRun.Services.Products.csproj", "{20589844-155E-45C9-B715-24C57DE93427}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspnetRun.Services.Orders", "AspnetRun.Services.Orders\AspnetRun.Services.Orders.csproj", "{3C9E59C7-BA81-4E3B-9A1D-A71C2CE83F21}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +71,10 @@ Global
 		{20589844-155E-45C9-B715-24C57DE93427}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{20589844-155E-45C9-B715-24C57DE93427}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{20589844-155E-45C9-B715-24C57DE93427}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C9E59C7-BA81-4E3B-9A1D-A71C2CE83F21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C9E59C7-BA81-4E3B-9A1D-A71C2CE83F21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C9E59C7-BA81-4E3B-9A1D-A71C2CE83F21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C9E59C7-BA81-4E3B-9A1D-A71C2CE83F21}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -83,6 +89,7 @@ Global
 		{0889FF01-29BA-4387-A64C-2E60199C9544} = {7CC4033C-35ED-4D93-B4CD-68FF0AF7CB91}
 		{BFB2CC68-CE2B-4346-982B-CE06CB303A26} = {7CC4033C-35ED-4D93-B4CD-68FF0AF7CB91}
 		{20589844-155E-45C9-B715-24C57DE93427} = {CA4177F8-7C59-45DE-8139-DF98ADD26B94}
+		{3C9E59C7-BA81-4E3B-9A1D-A71C2CE83F21} = {CA4177F8-7C59-45DE-8139-DF98ADD26B94}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B8BE9427-55CD-4306-809D-6512B49A7F30}

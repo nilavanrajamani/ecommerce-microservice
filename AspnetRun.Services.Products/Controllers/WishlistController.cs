@@ -9,14 +9,14 @@ using System.Threading.Tasks;
 namespace AspnetRun.Services.Products.Controllers
 {
     [ApiController]
-    [Route("api/wishlistpage")]
-    public class WishlistPageController : Controller
+    [Route("api/wishlist")]
+    public class WishlistController : Controller
     {
         private IWishlistService _wishListAppService;
         private IMapper _mapper;
-        private ILogger<WishlistPageController> _logger;
+        private ILogger<WishlistController> _logger;
 
-        public WishlistPageController(IWishlistService wishListAppService, IMapper mapper, ILogger<WishlistPageController> logger)
+        public WishlistController(IWishlistService wishListAppService, IMapper mapper, ILogger<WishlistController> logger)
         {
             _wishListAppService = wishListAppService ?? throw new ArgumentNullException(nameof(wishListAppService));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
